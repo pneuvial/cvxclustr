@@ -17,7 +17,7 @@
 #' w <- kernel_weights(X,phi)
 #' w <- knn_weights(w,k,p)
 #' AnM(w,p)
-AnM <- cmpfun(function(w,p) {
+AnM <-  function(w,p) {
   ix <- compactify_edges(w,p)$ix
   nEdges <- nrow(ix)
   nVertex <- max(ix)
@@ -30,4 +30,5 @@ AnM <- cmpfun(function(w,p) {
     bound <- max(bound,deg[ix[j,1]] + deg[ix[j,2]])
   }
   return(min(bound,nVertex))
-})
+}
+# compiled_AnM <- compiler::cmpfun(AnM)
